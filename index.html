@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<meta charset="utf-8" />
+	`	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<style>
+			#imageSlider-container{
+				margin-left:10%;
+				margin-right:10%;
+				border:30px solid #F9DE88;
+				box-shadow:50px 0 #92BAFC,-50px 0 #92BAFC;
+			}
+			#imageSlider-image{
+				color:#F9DE88;
+				height:100%;
+				width:100%;
+			}
+		</style>
+		<script>
+			function imageData(_imageSrc, _imageTitle, _imageDescription) {
+				this.imageSrc = _imageSrc;
+				this.imageTitle = _imageTitle;
+				this.imageDescription = _imageDescription;
+			}
+			
+			var imageSlider_counter = 0;
+			var imageDataList = new Array();
+			
+			function Ready() {
+				document.getElementById("imageSlider-container").innerHTML = "<img id='imageSlider-image' src''/>"
+					document.getElementById("imageSlider-image").src = imageDataList[imageSlider_counter].imageSrc;
+				setInterval(function(){
+					imageSlider_counter = (imageSlider_counter + 1) % imageDataList.length;
+					document.getElementById("imageSlider-image").src = imageDataList[imageSlider_counter].imageSrc;
+				},2000);
+			}
+		</script>
+	</head>
+	<body  bgcolor=#F097B3 onLoad="Ready()">
+		<div class=container4 id="imageSlider-container" style="widht=640px; height=427px"></div>
+		<script>
+			imageDataList.push(new imageData("motyl.jpg", "Title Image 0", "Description."));
+			imageDataList.push(new imageData("mucha.jpg", "Title Image 1", "Description."));
+			imageDataList.push(new imageData("pajak.jpg", "Title Image 2", "Description."));
+		</script>
+	</body>
+</html>
